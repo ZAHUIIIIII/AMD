@@ -3,8 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <title>URL Shortener</title>
-    <style>
+    <link rel="icon" href="/logo/logo.png" type="image/png">
+    
+        <style>
         /* General Reset */
         * {
             margin: 0;
@@ -14,7 +17,7 @@
         body {
             font-family: 'Arial', sans-serif;
             display: flex;
-            justify-content: flex-start;
+            flex-direction: column;
             align-items: center;
             min-height: 100vh;
             background-color: #f4f7f9;
@@ -23,11 +26,34 @@
             background-position: center;
             padding: 20px;
         }
+        .navbar {
+            width: 100%;
+            background-color: #4CAF50;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+        .navbar img {
+            width: 40px;
+            height: 40px;
+        }
+        .navbar h1 {
+            color: #fff;
+            font-size: 24px;
+            margin: 0;
+        }
         .main-container {
             display: flex;
             justify-content: space-between;
             width: 100%;
             max-width: 1200px;
+            margin-top: 80px; /* Adjust for navbar height */
         }
         .container {
             background: rgba(255, 255, 255, 0.9);
@@ -46,7 +72,13 @@
         }
         .input-group {
             display: flex;
+            align-items: center;
             margin-bottom: 20px;
+        }
+        .input-group h4 {
+            margin-right: 10px;
+            font-size: 16px;
+            color: #4CAF50;
         }
         input[type="text"] {
             flex: 1;
@@ -96,13 +128,10 @@
             padding: 20px;
             border-radius: 12px;
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-            width: 45%;
-            max-width: 500px;
-            height: 100vh;
+            width: 100%;
+            max-width: 1200px;
+            margin-top: 20px;
             overflow-y: auto;
-            position: fixed;
-            right: 0;
-            top: 0;
         }
         .history h2 {
             font-size: 20px;
@@ -175,16 +204,26 @@
     </style>
 </head>
 <body>
+    <div class="navbar">
+        <img src="/logo/logo.png" alt="Logo">
+
+        <h1>URL Shortener</h1>
+    </div>
     <div class="main-container">
         <div class="container">
             <h1>URL Shortener</h1>
-            <h4>Short your long URL</h4>
             <form id="shortenForm">
                 <div class="input-group">
+                    <h4>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+                            <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1 1 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4 4 0 0 1-.128-1.287z"/>
+                            <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243z"/>
+                        </svg>
+                        Short your long URL
+                    </h4>
                     <input type="text" id="originalUrl" placeholder="Enter URL" required>
                     <button type="submit">Shorten</button>
                 </div>
-                <h4>Short your long URL</h4>
                 <div class="input-group">
                     <input type="text" id="customAlias" placeholder="Enter Custom Alias (optional)">
                 </div>
@@ -194,17 +233,13 @@
                 COURSEWORK <a href="https://yourcompany.com" class="short-url-link" target="_blank">AMD201</a>
             </div>
         </div>
-
-
-
-        
-        <div class="history-container">
-            <div class="history">
-                <h2>History</h2>
-                <ul id="historyList"></ul>
-                <div class="delete-button-container">
-                    <button id="deleteHistoryButton">Delete All History</button>
-                </div>
+    </div>
+    <div class="history-container">
+        <div class="history">
+            <h2>History</h2>
+            <ul id="historyList"></ul>
+            <div class="delete-button-container">
+                <button id="deleteHistoryButton">Delete All History</button>
             </div>
         </div>
     </div>
