@@ -18,7 +18,7 @@
             align-items: center;
             min-height: 100vh;
             background-color: #f4f7f9;
-            background-image: url('https://source.unsplash.com/1600x900/?technology,abstract');
+            background-image: url('https://i.pinimg.com/originals/b2/98/19/b29819bfd32aaccdc5cb7e783b1fec8c.jpg');
             background-size: cover;
             background-position: center;
             padding: 20px;
@@ -35,7 +35,7 @@
             border-radius: 12px;
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
             text-align: center;
-            width: 500px;
+            width: 400px;
             margin-right: 20px;
             align-self: center; /* Center vertically */
         }
@@ -92,7 +92,7 @@
             color: #666;
         }
         .history-container {
-            background: rgb(252, 252, 252);
+            background: rgba(255, 255, 255, 0.9);
             padding: 20px;
             border-radius: 12px;
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
@@ -116,7 +116,7 @@
         .history li {
             margin-bottom: 10px;
             padding: 10px;
-            background: #ffffff;
+            background: #f9f9f9;
             border-radius: 8px;
             display: flex;
             align-items: center;
@@ -135,7 +135,7 @@
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            max-width: 100%; /* Ensure it doesn't overflow the container */
+            max-width: 200px; /* Adjust the max-width as needed */
         }
         .history .short-url {
             color: #3498db;
@@ -178,11 +178,13 @@
     <div class="main-container">
         <div class="container">
             <h1>URL Shortener</h1>
+            <h4>Short your long URL</h4>
             <form id="shortenForm">
                 <div class="input-group">
                     <input type="text" id="originalUrl" placeholder="Enter URL" required>
                     <button type="submit">Shorten</button>
                 </div>
+                <h4>Short your long URL</h4>
                 <div class="input-group">
                     <input type="text" id="customAlias" placeholder="Enter Custom Alias (optional)">
                 </div>
@@ -192,6 +194,10 @@
                 COURSEWORK <a href="https://yourcompany.com" class="short-url-link" target="_blank">AMD201</a>
             </div>
         </div>
+
+
+
+        
         <div class="history-container">
             <div class="history">
                 <h2>History</h2>

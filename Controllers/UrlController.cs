@@ -26,7 +26,7 @@ namespace UrlShortener.Controllers
             try
             {
                 var shortUrl = await _urlService.ShortenUrlAsync(request.OriginalUrl, request.CustomAlias);
-                return Ok(new UrlCreateResponse { ShortUrl = $"{Request.Scheme}://{Request.Host}/api/url/{shortUrl}" });
+                return Ok(new UrlCreateResponse { ShortUrl = $"{Request.Scheme}://{Request.Host}/{shortUrl}" });
             }
             catch (Exception ex)
             {
