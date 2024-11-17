@@ -12,29 +12,11 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>apc5jzyt7s</Fingerprint>
-      <Integrity>cnFMCvf286qhIJdRhd7V4RhkAdBQrl2Y3aj0F+ohbt8=</Integrity>
+      <Fingerprint>4fk26hzfv2</Fingerprint>
+      <Integrity>IJIzEH/nVcjtoN3X0GezvNwnLETObZeocAX9Uy+eJag=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\index.html'))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\text.html'))">
-      <SourceType>Package</SourceType>
-      <SourceId>UrlShortener</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/UrlShortener</BasePath>
-      <RelativePath>text.html</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>2gfgbijbc3</Fingerprint>
-      <Integrity>zuqnarlD3jewWgraw7/RQODoPIMIaUUYZ4xPi3nNLSY=</Integrity>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\text.html'))</OriginalItemSpec>
     </StaticWebAsset>
   </ItemGroup>
 </Project>

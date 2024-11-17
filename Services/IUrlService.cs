@@ -7,5 +7,6 @@ namespace UrlShortener.Services
         Task<string> ShortenUrlAsync(string originalUrl, string? customAlias = null);
         Task<string?> GetOriginalUrlAsync(string shortUrl);
         Task<List<UrlMapping>> GetAllUrlMappingsAsync();
+        Task DeleteAllUrlMappingsAsync(); // Add this method
     }
 }

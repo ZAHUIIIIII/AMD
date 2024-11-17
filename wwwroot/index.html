@@ -14,7 +14,7 @@
         body {
             font-family: 'Arial', sans-serif;
             display: flex;
-            flex-direction: column;
+            justify-content: flex-start;
             align-items: center;
             min-height: 100vh;
             background-color: #f4f7f9;
@@ -23,13 +23,21 @@
             background-position: center;
             padding: 20px;
         }
+        .main-container {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 1200px;
+        }
         .container {
             background: rgba(255, 255, 255, 0.9);
             padding: 30px;
             border-radius: 12px;
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
             text-align: center;
-            width: 400px;
+            width: 500px;
+            margin-right: 20px;
+            align-self: center; /* Center vertically */
         }
         h1 {
             font-size: 24px;
@@ -37,14 +45,15 @@
             margin-bottom: 20px;
         }
         .input-group {
+            display: flex;
             margin-bottom: 20px;
         }
         input[type="text"] {
-            width: 100%;
+            flex: 1;
             padding: 12px;
             font-size: 16px;
             border: 1px solid #ddd;
-            border-radius: 8px;
+            border-radius: 8px 0 0 8px;
             outline: none;
             transition: border-color 0.3s;
         }
@@ -52,13 +61,12 @@
             border-color: #4CAF50;
         }
         button {
-            width: 100%;
-            padding: 12px;
+            padding: 12px 20px;
             font-size: 16px;
             color: #fff;
             background-color: #4CAF50;
             border: none;
-            border-radius: 8px;
+            border-radius: 0 8px 8px 0;
             cursor: pointer;
             transition: background-color 0.3s;
         }
@@ -84,13 +92,17 @@
             color: #666;
         }
         .history-container {
-            background: rgba(255, 255, 255, 0.9);
+            background: rgb(252, 252, 252);
             padding: 20px;
             border-radius: 12px;
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-            width: 80%;
-            max-width: 800px;
-            margin-top: 20px;
+            width: 45%;
+            max-width: 500px;
+            height: 100vh;
+            overflow-y: auto;
+            position: fixed;
+            right: 0;
+            top: 0;
         }
         .history h2 {
             font-size: 20px;
@@ -104,32 +116,90 @@
         .history li {
             margin-bottom: 10px;
             padding: 10px;
-            background: #f9f9f9;
+            background: #ffffff;
             border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .history .logo {
+            width: 32px;
+            height: 32px;
+            margin-right: 10px;
+        }
+        .history .original-url {
+            color: #333;
+            font-weight: bold;
+            margin-bottom: 5px;
+            font-size: 12px; /* Smaller font size */
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 100%; /* Ensure it doesn't overflow the container */
+        }
+        .history .short-url {
+            color: #3498db;
+            display: block;
+            margin-top: 5px;
+        }
+        .history .url-info {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            flex: 1;
+        }
+        .history .tracking-info {
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+        }
+        .history .delete-button-container {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            margin-top: 20px;
+        }
+        .history .delete-button-container button {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #e74c3c;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .history .delete-button-container button:hover {
+            background-color: #c0392b;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>URL Shortener</h1>
-        <form id="shortenForm">
-            <div class="input-group">
-                <input type="text" id="originalUrl" placeholder="Enter URL" required>
+    <div class="main-container">
+        <div class="container">
+            <h1>URL Shortener</h1>
+            <form id="shortenForm">
+                <div class="input-group">
+                    <input type="text" id="originalUrl" placeholder="Enter URL" required>
+                    <button type="submit">Shorten</button>
+                </div>
+                <div class="input-group">
+                    <input type="text" id="customAlias" placeholder="Enter Custom Alias (optional)">
+                </div>
+            </form>
+            <p id="shortUrl" class="output"></p>
+            <div class="footer">
+                COURSEWORK <a href="https://yourcompany.com" class="short-url-link" target="_blank">AMD201</a>
             </div>
-            <div class="input-group">
-                <input type="text" id="customAlias" placeholder="Enter Custom Alias (optional)">
-            </div>
-            <button type="submit">Shorten</button>
-        </form>
-        <p id="shortUrl" class="output"></p>
-        <div class="footer">
-            COURSEWORK <a href="https://yourcompany.com" class="short-url-link" target="_blank">AMD201</a>
         </div>
-    </div>
-    <div class="history-container">
-        <div class="history">
-            <h2>History</h2>
-            <ul id="historyList"></ul>
+        <div class="history-container">
+            <div class="history">
+                <h2>History</h2>
+                <ul id="historyList"></ul>
+                <div class="delete-button-container">
+                    <button id="deleteHistoryButton">Delete All History</button>
+                </div>
+            </div>
         </div>
     </div>
     <script>
@@ -157,6 +227,20 @@
             }
         });
 
+        document.getElementById('deleteHistoryButton').addEventListener('click', async () => {
+            try {
+                const response = await fetch('/api/url/history', {
+                    method: 'DELETE'
+                });
+                if (!response.ok) {
+                    throw new Error('Failed to delete history. Please try again.');
+                }
+                loadHistory(); // Reload history after deletion
+            } catch (error) {
+                alert(error.message);
+            }
+        });
+
         async function loadHistory() {
             const historyList = document.getElementById('historyList');
             historyList.innerHTML = ''; // Clear previous history
@@ -168,7 +252,18 @@
                 const data = await response.json();
                 data.forEach(item => {
                     const listItem = document.createElement('li');
-                    listItem.innerHTML = `Original URL: <a href="${item.originalUrl}" target="_blank" class="short-url-link">${item.originalUrl}</a> - Short URL: <a href="${item.shortUrl}" target="_blank" class="short-url-link">${item.shortUrl}</a>`;
+                    const logoUrl = `https://logo.clearbit.com/${new URL(item.originalUrl).hostname}`;
+                    const fallbackLogoUrl = `https://icons.duckduckgo.com/ip3/${new URL(item.originalUrl).hostname}.ico`;
+                    const fullShortUrl = `${window.location.origin}/api/url/${item.shortUrl}`;
+                    const createdAt = new Date(item.createdAt).toLocaleString();
+                    listItem.innerHTML = `
+                        <img src="${logoUrl}" alt="Logo" class="logo" onerror="this.onerror=null;this.src='${fallbackLogoUrl}';">
+                        <div class="url-info">
+                            <span class="original-url">Original URL: <a href="${item.originalUrl}" target="_blank">${item.originalUrl}</a></span>
+                            <span class="short-url">Short URL: <a href="${fullShortUrl}" target="_blank">${fullShortUrl}</a></span>
+                            <span class="tracking-info">Tracking Disabled | ${createdAt}</span>
+                        </div>
+                    `;
                     historyList.appendChild(listItem);
                 });
             } catch (error) {

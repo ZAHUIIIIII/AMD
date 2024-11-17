@@ -51,6 +51,12 @@ namespace UrlShortener.Services
             return await _context.UrlMappings.ToListAsync();
         }
 
+        public async Task DeleteAllUrlMappingsAsync()
+        {
+            _context.UrlMappings.RemoveRange(_context.UrlMappings);
+            await _context.SaveChangesAsync();
+        }
+
         private string GenerateShortUrl()
         {
             return Guid.NewGuid().ToString("N").Substring(0, 8); // Short 8-char unique ID

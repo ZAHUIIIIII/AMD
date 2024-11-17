@@ -52,5 +52,12 @@ namespace UrlShortener.Controllers
             var urlMappings = await _urlService.GetAllUrlMappingsAsync();
             return Ok(urlMappings);
         }
+
+        [HttpDelete("history")]
+        public async Task<IActionResult> DeleteAllUrlMappings()
+        {
+            await _urlService.DeleteAllUrlMappingsAsync();
+            return NoContent();
+        }
     }
 }
