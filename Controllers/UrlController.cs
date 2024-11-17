@@ -1,63 +1,70 @@
-using Microsoft.AspNetCore.Mvc;
-using UrlShortener.Services;
-using UrlShortener.Models;
+using Microsoft.EntityFrameworkCore;
+using UrlShortener.Data;
 
-namespace UrlShortener.Controllers
+namespace UrlShortener.Services
 {
-    [ApiController]
-    [Route("api/[controller]")]
-    public class UrlController : ControllerBase
+    public class UrlService : IUrlService
     {
-        private readonly IUrlService _urlService;
+        private readonly ApplicationDbContext _context;
 
-        public UrlController(IUrlService urlService)
+        public UrlService(ApplicationDbContext context)
         {
-            _urlService = urlService;
+            _context = context;
         }
 
-        [HttpPost]
-        public async Task<IActionResult> CreateShortUrl([FromBody] UrlCreateRequest request)
+        public async Task<string> ShortenUrlAsync(string originalUrl, string? customAlias = null)
         {
-            if (string.IsNullOrEmpty(request.OriginalUrl))
+            if (customAlias != null && customAlias.Length != 8)
             {
-                return BadRequest("Original URL is required.");
+                throw new Exception("Custom alias must be exactly 8 characters long.");
             }
 
-            try
+            var shortUrl = customAlias ?? GenerateShortUrl();
+
+            // Check if the custom alias already exists
+            if (customAlias != null)
             {
-                var shortUrl = await _urlService.ShortenUrlAsync(request.OriginalUrl, request.CustomAlias);
-                return Ok(new UrlCreateResponse { ShortUrl = $"{Request.Scheme}://{Request.Host}/{shortUrl}" });
+                var existingMapping = await _context.UrlMappings
+                    .FirstOrDefaultAsync(u => u.ShortUrl == customAlias);
+                if (existingMapping != null)
+                {
+                    throw new Exception("Custom alias already exists. Please choose a different alias.");
+                }
             }
-            catch (Exception ex)
+
+            var urlMapping = new UrlMapping
             {
-                return BadRequest(ex.Message);
-            }
+                OriginalUrl = originalUrl,
+                ShortUrl = shortUrl,
+                CreatedAt = DateTime.UtcNow
+            };
+
+            _context.UrlMappings.Add(urlMapping);
+            await _context.SaveChangesAsync();
+            return shortUrl;
         }
 
-        [HttpGet("{shortUrl}")]
-        public async Task<IActionResult> GetOriginalUrl(string shortUrl)
+        public async Task<string?> GetOriginalUrlAsync(string shortUrl)
         {
-            var originalUrl = await _urlService.GetOriginalUrlAsync(shortUrl);
-            if (originalUrl == null)
-            {
-                return NotFound();
-            }
-
-            return Redirect(originalUrl);
+            var urlMapping = await _context.UrlMappings
+                .FirstOrDefaultAsync(u => u.ShortUrl == shortUrl);
+            return urlMapping?.OriginalUrl;
         }
 
-        [HttpGet("history")]
-        public async Task<IActionResult> GetAllUrlMappings()
+        public async Task<List<UrlMapping>> GetAllUrlMappingsAsync()
         {
-            var urlMappings = await _urlService.GetAllUrlMappingsAsync();
-            return Ok(urlMappings);
+            return await _context.UrlMappings.ToListAsync();
         }
 
-        [HttpDelete("history")]
-        public async Task<IActionResult> DeleteAllUrlMappings()
+        public async Task DeleteAllUrlMappingsAsync()
         {
-            await _urlService.DeleteAllUrlMappingsAsync();
-            return NoContent();
+            _context.UrlMappings.RemoveRange(_context.UrlMappings);
+            await _context.SaveChangesAsync();
+        }
+
+        private string GenerateShortUrl()
+        {
+            return Guid.NewGuid().ToString("N").Substring(0, 8); // Short 8-char unique ID
         }
     }
 }

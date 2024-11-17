@@ -14,6 +14,11 @@ namespace UrlShortener.Services
 
         public async Task<string> ShortenUrlAsync(string originalUrl, string? customAlias = null)
         {
+            if (customAlias != null && customAlias.Length != 8)
+            {
+                throw new Exception("Custom alias must be exactly 8 characters long.");
+            }
+
             var shortUrl = customAlias ?? GenerateShortUrl();
 
             // Check if the custom alias already exists
@@ -48,7 +53,9 @@ namespace UrlShortener.Services
 
         public async Task<List<UrlMapping>> GetAllUrlMappingsAsync()
         {
-            return await _context.UrlMappings.ToListAsync();
+            return await _context.UrlMappings
+                .OrderBy(u => u.CreatedAt) // Sort by CreatedAt in ascending order
+                .ToListAsync();
         }
 
         public async Task DeleteAllUrlMappingsAsync()

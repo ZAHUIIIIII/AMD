@@ -3,11 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
     <title>URL Shortener</title>
-    <link rel="icon" href="/logo/logo.png" type="image/png">
-    
-        <style>
+    <link rel="icon" href="/logo/logo.jpg" type="image/png">
+    <style>
         /* General Reset */
         * {
             margin: 0;
@@ -21,14 +19,14 @@
             align-items: center;
             min-height: 100vh;
             background-color: #f4f7f9;
-            background-image: url('https://i.pinimg.com/originals/b2/98/19/b29819bfd32aaccdc5cb7e783b1fec8c.jpg');
+            background-image: url('https://yandex-images.clstorage.net/J5kiC0190/34b349wF/i4NruulWmLGfRHWsDn90F4Vb-o43B22z5b-ent3EgLHhbrd_-qkYPkfwtDy4HUMuVnf5GWsK22xiFu1aj-xd0WvHDju9kjyQ-qGhnbs_9CfVei9aBhaoE6BuOrvtdLWXR8mFXYlLjjlA4mbNSFi2WwJ2PAy7jF3NYsZqOBgZODAZgJg5-iYY1uyk5bjP_sbXp8st7Jfna7ByLB5b2oPj5hdolf47y59787GFDrnYFktzsZ5vaj4OSMLEyOqIe7oiC7KZOuk2OZdddKUJ_8-Vp_SZH-9HhhjQQiyc6znygme2uKVsK-seuJMwhj2qChdro0G_DLhOL5gjZ6rI2gtJoWrwuwkL9PklLwZFio5P1obFy_7OhYS4Q1C9PDpag4JUROrVv_k5T_lC08ccGesEuYLhvy1pruyKE3TrGnk7W1Epoau7OYSI9A6k5It__ZdVZmtsvcU2SCMTLp5ZO5EjNYcZ9z4q2x-pwiCG_fkIxWjz0gxf6kyeGBE2GZv4WtuiSsKpSZnV-6Z_tVaKH002BeWorBxVBDogAx2fu4rTseaFa-ev6RmeaEBzZu7o-iapYTHdX8n_3xkxdYo76isawOqRW-qYJsm3vUS3-a88RoU1yu1shQepEVPsPamKUOGWVKsUTsibb5ijg9TP2DnESnFCzS7r7M-YUqSoybpoe4NbEvoLaffZ9j3FZgo9zlVUxGpc_JRGmWERH7-r2HFCRyQqF_7YmE1bEEA3L1g4BSrz0j18iDwNCgMX6Roq--vx6TJJOKnF6sdexNcZjH-35udovUw0J7oDgP4Oq4migicVadXdaTlsKFMSNl9IeTY7QGNdXXjPf0lwNsl5uRv7sPlCOSqJV9nVjIcU2f2-xZX0O0yc58doIkENPJurMRG0FQo1HCvpn3pBopS8qQn0yfNQfOwpPv-78ARJWNvYKBFpULj6uDc4lh2lNrmdzeX3JTrO3odG2_MwvSyZqQDx4');
             background-size: cover;
             background-position: center;
             padding: 20px;
         }
         .navbar {
             width: 100%;
-            background-color: #4CAF50;
+            background-color: #C1F2B0; /* Semi-transparent background */
             padding: 10px 20px;
             display: flex;
             align-items: center;
@@ -61,7 +59,7 @@
             border-radius: 12px;
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
             text-align: center;
-            width: 400px;
+            width: 500px;
             margin-right: 20px;
             align-self: center; /* Center vertically */
         }
@@ -124,19 +122,23 @@
             color: #666;
         }
         .history-container {
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.5); /* Semi-transparent background */
             padding: 20px;
             border-radius: 12px;
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-            width: 100%;
-            max-width: 1200px;
-            margin-top: 20px;
+            width: 45%;
+            max-width: 500px;
+            height: 100vh;
             overflow-y: auto;
+            position: fixed;
+            right: 0;
+            top: 80px; /* Adjust for navbar height */
         }
         .history h2 {
             font-size: 20px;
-            color: #4CAF50;
+            color: #65B741;
             margin-bottom: 10px;
+            text-align: center;
         }
         .history ul {
             list-style-type: none;
@@ -145,7 +147,7 @@
         .history li {
             margin-bottom: 10px;
             padding: 10px;
-            background: #f9f9f9;
+            background: #FBF6EE;
             border-radius: 8px;
             display: flex;
             align-items: center;
@@ -186,7 +188,7 @@
             display: flex;
             justify-content: center;
             width: 100%;
-            margin-top: 20px;
+            margin-bottom: 20px; /* Move the delete button to the top */
         }
         .history .delete-button-container button {
             padding: 10px 20px;
@@ -205,22 +207,20 @@
 </head>
 <body>
     <div class="navbar">
-        <img src="/logo/logo.png" alt="Logo">
-
-        <h1>URL Shortener</h1>
+        <img src="/logo/logo.jpg" alt="Logo">
+        <h1 style="color: #65B741;">URL Shortener</h1>
     </div>
     <div class="main-container">
         <div class="container">
-            <h1>URL Shortener</h1>
             <form id="shortenForm">
+                <h4>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+                        <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1 1 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4 4 0 0 1-.128-1.287z"/>
+                        <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243z"/>
+                    </svg>
+                    Short your long URL
+                </h4>
                 <div class="input-group">
-                    <h4>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
-                            <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1 1 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4 4 0 0 1-.128-1.287z"/>
-                            <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243z"/>
-                        </svg>
-                        Short your long URL
-                    </h4>
                     <input type="text" id="originalUrl" placeholder="Enter URL" required>
                     <button type="submit">Shorten</button>
                 </div>
@@ -236,22 +236,25 @@
     </div>
     <div class="history-container">
         <div class="history">
-            <h2>History</h2>
-            <ul id="historyList"></ul>
             <div class="delete-button-container">
                 <button id="deleteHistoryButton">Delete All History</button>
             </div>
+            <h2>History</h2>
+            <ul id="historyList"></ul>
         </div>
     </div>
     <script>
         document.getElementById('shortenForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             const originalUrl = document.getElementById('originalUrl').value.trim();
-            const customAlias = document.getElementById('customAlias').value.trim();
+            const customAlias = document.getElementById('customAlias').value.trim() || null;
             const shortUrlOutput = document.getElementById('shortUrl');
             // Reset previous output
             shortUrlOutput.innerHTML = '';
             try {
+                if (customAlias && customAlias.length !== 8) {
+                    throw new Error('Custom alias must be exactly 8 characters long.');
+                }
                 const response = await fetch('/api/url', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -302,7 +305,7 @@
                         <div class="url-info">
                             <span class="original-url">Original URL: <a href="${item.originalUrl}" target="_blank">${item.originalUrl}</a></span>
                             <span class="short-url">Short URL: <a href="${fullShortUrl}" target="_blank">${fullShortUrl}</a></span>
-                            <span class="tracking-info">Tracking Disabled | ${createdAt}</span>
+                            <span class="created-at">Created At: ${createdAt}</span>
                         </div>
                     `;
                     historyList.appendChild(listItem);
