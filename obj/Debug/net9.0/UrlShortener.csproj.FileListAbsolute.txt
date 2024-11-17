@@ -35,7 +35,6 @@
 /Users/ttcenter/UrlShortener/bin/Debug/net9.0/Microsoft.EntityFrameworkCore.dll
 /Users/ttcenter/UrlShortener/bin/Debug/net9.0/Microsoft.EntityFrameworkCore.Abstractions.dll
 /Users/ttcenter/UrlShortener/bin/Debug/net9.0/Microsoft.EntityFrameworkCore.InMemory.dll
-/Users/ttcenter/UrlShortener/obj/Debug/net9.0/compressed/9u5newgawz-6ks0fqp0mc.gz
 /Users/ttcenter/UrlShortener/bin/Debug/net9.0/Microsoft.Data.Sqlite.dll
 /Users/ttcenter/UrlShortener/bin/Debug/net9.0/Microsoft.EntityFrameworkCore.Relational.dll
 /Users/ttcenter/UrlShortener/bin/Debug/net9.0/Microsoft.EntityFrameworkCore.Sqlite.dll
@@ -146,3 +145,6 @@
 /Users/ttcenter/UrlShortener/bin/Debug/net9.0/tr/Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
 /Users/ttcenter/UrlShortener/bin/Debug/net9.0/zh-Hans/Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
 /Users/ttcenter/UrlShortener/bin/Debug/net9.0/zh-Hant/Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+/Users/ttcenter/UrlShortener/obj/Debug/net9.0/UrlShortener.sourcelink.json
+/Users/ttcenter/UrlShortener/obj/Debug/net9.0/compressed/9u5newgawz-apc5jzyt7s.gz
+/Users/ttcenter/UrlShortener/obj/Debug/net9.0/compressed/rxww42muo4-2gfgbijbc3.gz

@@ -12,9 +12,21 @@ namespace UrlShortener.Services
             _context = context;
         }
 
-        public async Task<string> ShortenUrlAsync(string originalUrl)
+        public async Task<string> ShortenUrlAsync(string originalUrl, string? customAlias = null)
         {
-            var shortUrl = GenerateShortUrl();
+            var shortUrl = customAlias ?? GenerateShortUrl();
+
+            // Check if the custom alias already exists
+            if (customAlias != null)
+            {
+                var existingMapping = await _context.UrlMappings
+                    .FirstOrDefaultAsync(u => u.ShortUrl == customAlias);
+                if (existingMapping != null)
+                {
+                    throw new Exception("Custom alias already exists. Please choose a different alias.");
+                }
+            }
+
             var urlMapping = new UrlMapping
             {
                 OriginalUrl = originalUrl,
@@ -32,6 +44,11 @@ namespace UrlShortener.Services
             var urlMapping = await _context.UrlMappings
                 .FirstOrDefaultAsync(u => u.ShortUrl == shortUrl);
             return urlMapping?.OriginalUrl;
+        }
+
+        public async Task<List<UrlMapping>> GetAllUrlMappingsAsync()
+        {
+            return await _context.UrlMappings.ToListAsync();
         }
 
         private string GenerateShortUrl()

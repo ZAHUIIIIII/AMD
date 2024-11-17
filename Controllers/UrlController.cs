@@ -23,8 +23,15 @@ namespace UrlShortener.Controllers
                 return BadRequest("Original URL is required.");
             }
 
-            var shortUrl = await _urlService.ShortenUrlAsync(request.OriginalUrl);
-            return Ok(new UrlCreateResponse { ShortUrl = $"{Request.Scheme}://{Request.Host}/api/url/{shortUrl}" });
+            try
+            {
+                var shortUrl = await _urlService.ShortenUrlAsync(request.OriginalUrl, request.CustomAlias);
+                return Ok(new UrlCreateResponse { ShortUrl = $"{Request.Scheme}://{Request.Host}/api/url/{shortUrl}" });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpGet("{shortUrl}")]
@@ -37,6 +44,13 @@ namespace UrlShortener.Controllers
             }
 
             return Redirect(originalUrl);
+        }
+
+        [HttpGet("history")]
+        public async Task<IActionResult> GetAllUrlMappings()
+        {
+            var urlMappings = await _urlService.GetAllUrlMappingsAsync();
+            return Ok(urlMappings);
         }
     }
 }

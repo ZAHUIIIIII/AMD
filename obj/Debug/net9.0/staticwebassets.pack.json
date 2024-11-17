@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets/index.html"
     },
     {
+      "Id": "/Users/ttcenter/UrlShortener/wwwroot/text.html",
+      "PackagePath": "staticwebassets/text.html"
+    },
+    {
       "Id": "obj/Debug/net9.0/staticwebassets/msbuild.UrlShortener.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
     },
