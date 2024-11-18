@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Shortener</title>
+    <link rel="icon" href="/logo/logo.jpg" type="image/png">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body>
+    <div class="navbar">
+        <img src="/logo/logo.jpg" alt="Logo">
+        <h1 style="color: #65B741;">URL Shortener</h1>
+    </div>
+    <div class="main-container">
+        <div class="container">
+            <form id="shortenForm">
+                <h4>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-link-45deg" viewBox="0 0 16 16">
+                        <path
+                            d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1 1 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4 4 0 0 1-.128-1.287z" />
+                        <path
+                            d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243z" />
+                    </svg>
+                    Short your long URL
+                </h4>
+                <div class="input-group">
+                    <input type="text" id="originalUrl" placeholder="Enter URL" required>
+                    <button type="submit">Shorten</button>
+                </div>
+                <div class="input-group">
+                    <input type="text" id="customAlias" placeholder="Enter Custom Alias (optional)">
+                </div>
+            </form>
+            <p id="shortUrl" class="output"></p>
+            <div class="footer">
+                COURSEWORK <a href="https://yourcompany.com" class="short-url-link" target="_blank">AMD201</a>
+            </div>
+        </div>
+    </div>
+    <div class="history-container">
+        <div class="history">
+            <div class="delete-button-container">
+                <button id="deleteHistoryButton">Delete All History</button>
+            </div>
+            <h2>History</h2>
+            <ul id="historyList"></ul>
+        </div>
+        <script src="/js/scripts.js"></script>
+</body>
+
+</html>

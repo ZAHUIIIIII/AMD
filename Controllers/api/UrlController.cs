@@ -6,13 +6,19 @@ namespace UrlShortener.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class UrlController : ControllerBase
+    public class UrlController : Controller
     {
         private readonly IUrlService _urlService;
 
         public UrlController(IUrlService urlService)
         {
             _urlService = urlService;
+        }
+
+        [HttpGet("/")]
+        public IActionResult Index()
+        {
+            return View("~/Views/Home/Index.cshtml");
         }
 
         [HttpPost]

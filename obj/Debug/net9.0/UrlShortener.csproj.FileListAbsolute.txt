@@ -131,7 +131,6 @@
 /Users/ttcenter/UrlShortener/bin/Debug/net9.0/runtimes/win-x64/native/e_sqlite3.dll
 /Users/ttcenter/UrlShortener/bin/Debug/net9.0/runtimes/win-x86/native/e_sqlite3.dll
 /Users/ttcenter/UrlShortener/obj/Debug/net9.0/scopedcss/bundle/UrlShortener.styles.css
-/Users/ttcenter/UrlShortener/obj/Debug/net9.0/compressed/9u5newgawz-ai7ae28gcl.gz
 /Users/ttcenter/UrlShortener/obj/Debug/net9.0/staticwebassets.build.json
 /Users/ttcenter/UrlShortener/obj/Debug/net9.0/staticwebassets.development.json
 /Users/ttcenter/UrlShortener/obj/Debug/net9.0/staticwebassets.build.endpoints.json
@@ -147,3 +146,7 @@
 /Users/ttcenter/UrlShortener/obj/Debug/net9.0/UrlShortener.pdb
 /Users/ttcenter/UrlShortener/obj/Debug/net9.0/UrlShortener.genruntimeconfig.cache
 /Users/ttcenter/UrlShortener/obj/Debug/net9.0/ref/UrlShortener.dll
+/Users/ttcenter/UrlShortener/obj/Debug/net9.0/UrlShortener.RazorAssemblyInfo.cache
+/Users/ttcenter/UrlShortener/obj/Debug/net9.0/UrlShortener.RazorAssemblyInfo.cs
+/Users/ttcenter/UrlShortener/obj/Debug/net9.0/compressed/iygdylmibo-gc57il2fmc.gz
+/Users/ttcenter/UrlShortener/obj/Debug/net9.0/compressed/ztxwkd46zk-d04pk74qfb.gz

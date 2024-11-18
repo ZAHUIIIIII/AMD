@@ -8,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlite("Data Source=UrlShortener.db")); // Use SQLite database
 builder.Services.AddScoped<IUrlService, UrlService>();
-builder.Services.AddControllers();
+builder.Services.AddControllersWithViews(); // Add MVC services
 
 var app = builder.Build();
 
@@ -22,6 +22,6 @@ app.UseHttpsRedirection();
 app.UseRouting();
 app.UseAuthorization();
 app.UseStaticFiles(); // Serve static files from wwwroot
-app.MapControllers();
+app.MapDefaultControllerRoute(); // Use default route for MVC
 
 app.Run();

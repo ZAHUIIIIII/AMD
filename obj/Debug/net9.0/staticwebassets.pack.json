@@ -1,8 +1,12 @@
 {
   "Files": [
     {
-      "Id": "/Users/ttcenter/UrlShortener/wwwroot/index.html",
-      "PackagePath": "staticwebassets/index.html"
+      "Id": "/Users/ttcenter/UrlShortener/wwwroot/css/styles.css",
+      "PackagePath": "staticwebassets/css/styles.css"
+    },
+    {
+      "Id": "/Users/ttcenter/UrlShortener/wwwroot/js/scripts.js",
+      "PackagePath": "staticwebassets/js/scripts.js"
     },
     {
       "Id": "/Users/ttcenter/UrlShortener/wwwroot/logo/logo.jpg",
