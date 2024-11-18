@@ -7,8 +7,8 @@ document.getElementById('shortenForm').addEventListener('submit', async (e) => {
     // Reset previous output
     shortUrlOutput.innerHTML = '';
     try {
-        if (customAlias && customAlias.length !== 5) {
-            throw new Error('Custom alias must be exactly 5 characters long.');
+        if (customAlias && customAlias.length !== 8) {
+            throw new Error('Custom alias must be exactly 8 characters long.');
         }
         const response = await fetch('/api/url', {
             method: 'POST',

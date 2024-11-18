@@ -6,7 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Configure services
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlite("Data Source=UrlShortener.db")); // Use SQLite database
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"))); // Use PostgreSQL database
 builder.Services.AddScoped<IUrlService, UrlService>();
 builder.Services.AddControllersWithViews(); // Add MVC services
 
